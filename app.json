@@ -1,0 +1,30 @@
+{
+  "name": "Courier: Slack Registration App",
+  "description": "An app for handling Slack's OAuth handshakes and storing the tokens in Courier profile storage.",
+  "website": "https://www.trycourier.com",
+  "repository": "https://github.com/trycourier/registration-handler-slack",
+  "env": {
+    "SLACK_CLIENT_ID": {
+      "description": "Get from https://api.slack.com/apps"
+    },
+    "SLACK_CLIENT_SECRET": {
+      "description": "Get from https://api.slack.com/apps"
+    },
+    "SLACK_SCOPES": {
+      "description": "Comma-delimited list of 'incoming-webhook', 'bot', and/or 'commands'.",
+      "value": "incoming-webhook"
+    },
+    "COURIER_AUTH_TOKEN": {
+      "description": "Get from https://www.trycourier.app"
+    },
+    "REDIRECT_SUCCESS": {
+      "description": "The URL you wish the user to be redirected to after their profile has been updated, if everything succeeded."
+    },
+    "REDIRECT_ERROR": {
+      "description": "The URL you wish the user to be redirected to if something failed while trying to connect to their Slack account or store it in Courier."
+    },
+    "NODE_ENV": {
+      "value": "production"
+    }
+  }
+}

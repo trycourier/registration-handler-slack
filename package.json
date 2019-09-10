@@ -1,0 +1,26 @@
+{
+  "name": "registration-handler-slack",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next build && next start",
+    "ngrok": "ngrok http 3000 -subdomain=trycourier"
+  },
+  "dependencies": {
+    "@trycourier/courier": "^1.1.6",
+    "got": "^9.6.0",
+    "next": "9.0.5",
+    "qs": "^6.8.0",
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
+  },
+  "devDependencies": {
+    "@types/got": "^9.6.7",
+    "@types/node": "^12.7.4",
+    "@types/qs": "^6.5.3",
+    "@types/react": "^16.9.2",
+    "typescript": "^3.6.2"
+  }
+}
