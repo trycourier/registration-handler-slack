@@ -10,6 +10,9 @@
     "SLACK_CLIENT_SECRET": {
       "description": "Get from https://api.slack.com/apps"
     },
+    "SLACK_REDIRECT_URI": {
+      "description": "URL to your OAuth endpoint; should be the protocol+domain this app is hosted on plus `/api/oauth`."
+    },
     "SLACK_SCOPES": {
       "description": "Comma-delimited list of 'incoming-webhook', 'bot', and/or 'commands'.",
       "value": "incoming-webhook"

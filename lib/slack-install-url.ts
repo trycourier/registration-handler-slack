@@ -1,7 +1,5 @@
 import qs from 'qs';
 
-type SlackButtonScope = "incoming-webhook" | "commands" | "bot";
-
 interface SlackInstallUrlOptions {
   slackClientId: string;
   scopes: string;
