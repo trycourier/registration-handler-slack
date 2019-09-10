@@ -13,6 +13,7 @@ const Index: React.FC = () => {
   const slackInstallUrl = createSlackInstallUrl({
     slackClientId: env.SLACK_CLIENT_ID,
     scopes: env.SLACK_SCOPES,
+    redirectUri: env.SLACK_REDIRECT_URI && env.SLACK_REDIRECT_URI.length ? env.SLACK_REDIRECT_URI : undefined,
     state: recipientId && recipientId.length ? JSON.stringify({
       recipient: recipientId
     }) : undefined
