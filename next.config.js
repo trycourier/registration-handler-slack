@@ -1,7 +1,7 @@
 const publicRuntimeConfig = {
   SLACK_CLIENT_ID: process.env.SLACK_CLIENT_ID,
   SLACK_REDIRECT_URI: process.env.SLACK_REDIRECT_URI || 'https://trycourier.ngrok.io/api/oauth',
-  SLACK_SCOPES: process.env.SLACK_SCOPES || 'incoming-webhook'
+  SLACK_SCOPES: process.env.SLACK_SCOPES || 'bot,im:write'
 };
 
 module.exports = {

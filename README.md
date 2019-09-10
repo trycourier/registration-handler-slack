@@ -15,6 +15,11 @@ Point users at `<DOMAIN>/api/register?recipient=<RECIPIENT_ID>` to begin the reg
 * Ensure your `ngrok`-generated URL is whitelisted in your Slack app
 * See `env.ts` for a list of environment variables that should be set
 
+## Scopes
+
+* `bot,im:write` (DEFAULT) to Direct Message the user from your App
+* `incoming-webhook` to send messages via Webhook to the selected channel
+
 ## License
 
 [MIT License](http://www.opensource.org/licenses/mit-license.php)
