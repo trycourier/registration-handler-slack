@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && next start",
     "ngrok": "ngrok http 3000 -subdomain=trycourier"
   },
   "dependencies": {

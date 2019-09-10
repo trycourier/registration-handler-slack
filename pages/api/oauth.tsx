@@ -54,7 +54,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     auth: `${env.SLACK_CLIENT_ID}:${env.SLACK_CLIENT_SECRET}`,
     query: {
       code,
-      "redirect_uri": env.SLACK_REDIRECT_URI
+      "redirect_uri": env.SLACK_REDIRECT_URI && env.SLACK_REDIRECT_URI.length ? env.SLACK_REDIRECT_URI : undefined
     },
     json: true
   })
