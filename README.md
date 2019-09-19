@@ -17,7 +17,7 @@ Point users at `<DOMAIN>/api/register?recipient=<RECIPIENT_ID>` to begin the reg
 
 ## Scopes
 
-* `bot,im:write` (DEFAULT) to Direct Message the user from your App
+* `bot` (DEFAULT) to Direct Message the user from your App
 * `incoming-webhook` to send messages via Webhook to the selected channel
 
 ## License
