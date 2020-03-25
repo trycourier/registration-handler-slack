@@ -1,26 +1,37 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import getConfig from 'next/config';
-import got from 'got';
-import EnvConfig from '../../env';
-import { sendJson, sendRedirect } from '../../lib/res-utils';
-import { SlackCompletedInstallation, SlackPendingInstallation } from '../../lib/slack-types';
-import updateCourier from '../../lib/update-courier';
+import { NextApiRequest, NextApiResponse } from "next";
+import getConfig from "next/config";
+import got from "got";
+import EnvConfig from "../../env";
+import { sendJson, sendRedirect } from "../../lib/res-utils";
+import {
+  SlackCompletedInstallation,
+  SlackPendingInstallation
+} from "../../lib/slack-types";
+import updateCourier from "../../lib/update-courier";
 
 const { serverRuntimeConfig: env } = getConfig() as EnvConfig;
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { code, state }: SlackPendingInstallation = (req.query as unknown) as SlackPendingInstallation;
+  const {
+    code,
+    state
+  }: SlackPendingInstallation = (req.query as unknown) as SlackPendingInstallation;
 
-  const res2 = await got('https://slack.com/api/oauth.access', {
-    auth: `${env.SLACK_CLIENT_ID}:${env.SLACK_CLIENT_SECRET}`,
-    query: {
-      code,
-      "redirect_uri": env.SLACK_REDIRECT_URI && env.SLACK_REDIRECT_URI.length ? env.SLACK_REDIRECT_URI : undefined
-    },
-    json: true
-  })
+  const payload: SlackCompletedInstallation = await got(
+    "https://slack.com/api/oauth.access",
+    {
+      username: env.SLACK_CLIENT_ID,
+      password: env.SLACK_CLIENT_SECRET,
+      searchParams: {
+        code,
+        redirect_uri:
+          env.SLACK_REDIRECT_URI && env.SLACK_REDIRECT_URI.length
+            ? env.SLACK_REDIRECT_URI
+            : undefined
+      }
+    }
+  ).json();
 
-  const payload: SlackCompletedInstallation = (res2.body as unknown) as SlackCompletedInstallation;
   try {
     await updateCourier({
       payload,
@@ -33,7 +44,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
   }
 
-  if (payload && payload.ok && env.REDIRECT_SUCCESS && env.REDIRECT_SUCCESS.length) {
+  if (
+    payload &&
+    payload.ok &&
+    env.REDIRECT_SUCCESS &&
+    env.REDIRECT_SUCCESS.length
+  ) {
     return sendRedirect(res, env.REDIRECT_SUCCESS);
   } else if (env.REDIRECT_ERROR && env.REDIRECT_ERROR.length) {
     return sendRedirect(res, env.REDIRECT_ERROR);
